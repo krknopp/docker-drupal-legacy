@@ -22,6 +22,12 @@ cd /var/www/site/ && ln -sf /mnt/sites-files/private private
 # Set DRUPAL_VERSION
 echo $(/usr/local/src/drush/drush --root=$APACHE_DOCROOT status | grep "Drupal version" | awk '{ print substr ($(NF), 0, 2) }') > /root/drupal-version.txt
 
+# Install appropriate apache config and restart apache
+if [ $WWW = "true" ] ; then 
+  cp /root/wwwsite.conf /etc/apache2/sites-enabled/000-default.conf
+  /usr/bin/supervisorctl restart apache2
+fi
+
 # Import starter.sql, if needed
 /root/mysqlimport.sh
 

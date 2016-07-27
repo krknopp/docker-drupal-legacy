@@ -26,14 +26,14 @@ RUN chmod +x /usr/local/bin/confd
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY www.conf /etc/php5/fpm/pool.d/www.conf
+COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 COPY php.ini /etc/php5/apache2/php.ini
-COPY site.conf /etc/apache2/sites-available/000-default.conf
 COPY remoteip.conf /etc/apache2/conf-enabled/remoteip.conf
 COPY confd /etc/confd/
 COPY apache2.conf /etc/apache2/apache2.conf
 
 # Copy in drupal-specific files
-COPY drupal-settings.sh crons.conf start.sh mysqlimport.sh /root/
+COPY wwwsite.conf drupal-settings.sh crons.conf start.sh mysqlimport.sh /root/
 COPY drupal7-settings /root/drupal7-settings/
 
 # Volumes
