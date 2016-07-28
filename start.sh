@@ -32,4 +32,5 @@ fi
 /root/mysqlimport.sh
 
 # Create Drupal settings, if they don't exist
+ln -s $APACHE_DOCROOT /root/apache_docroot
 /root/drupal-settings.sh
