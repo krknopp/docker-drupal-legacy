@@ -1,8 +1,8 @@
 # docker-drupal8
 
-Custom build for Code Koalas' Drupal 8 deployments.  
+Custom build for Code Koalas' Legacy Drupal deployments.  
 
-Consists of Ubuntu 16.04, PHP7 (FPM) and Apache 2.4.
+Consists of Ubuntu 14.04, PHP5.5.9 (FPM) and Apache 2.4.
 
 # Environment variables
 * VIRTUAL_HOST= FQDN of website with a "." at the beginning

@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	libcurl4-openssl-dev libxml2-dev mime-support \
 	apache2 \
 	ca-certificates curl supervisor git cron mysql-client ssmtp \
-	--no-install-recommends && apt-get upgrade && rm -rf /var/lib/apt/lists/*
+	--no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod ssl rewrite headers proxy_fcgi remoteip
 
