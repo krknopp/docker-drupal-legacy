@@ -16,7 +16,7 @@ git clone -b $GIT_BRANCH $GIT_REPO /var/www/site/
 # Symlink files folder
 mkdir -p /mnt/sites-files/public
 mkdir -p /mnt/sites-files/private
-cd /var/www/site/docroot/sites/default && ln -sf /mnt/sites-files/public files
+cd $APACHE_DOCROOT/sites/default && ln -sf /mnt/sites-files/public files
 cd /var/www/site/ && ln -sf /mnt/sites-files/private private
 
 # Set DRUPAL_VERSION
