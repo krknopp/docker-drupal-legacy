@@ -27,7 +27,7 @@ RUN chmod +x /usr/local/bin/confd
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY www.conf /etc/php5/fpm/pool.d/www.conf
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
-COPY php.ini /etc/php5/apache2/php.ini
+COPY php.ini /etc/php5/fpm/php.ini
 COPY remoteip.conf /etc/apache2/conf-enabled/remoteip.conf
 COPY confd /etc/confd/
 COPY apache2.conf /etc/apache2/apache2.conf
