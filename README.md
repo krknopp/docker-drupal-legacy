@@ -7,6 +7,7 @@ Consists of Ubuntu 14.04, PHP5.5.9 (FPM) and Apache 2.4.
 # Environment variables
 * VIRTUAL_HOST= FQDN of website with a "." at the beginning
 * WWW= "true" if the site should redirect to www.fqdn
+* PRODUCTION= "true" if the site is production (affects Git pulls and drupal settings)
 * GIT_HOSTS= Hosts file entry to be added
 * GIT_REPO= URL of Git repo to pull from
 * GIT_BRANCH= Git branch
