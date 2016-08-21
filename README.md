@@ -22,5 +22,10 @@ Consists of Ubuntu 14.04, PHP5.5.9 (FPM) and Apache 2.4.
 * SESAuthPass= AWS SES SMTP password
 * SESmailhub= AWS SES SMTP address
 
+# BASH aliases
+`mysqlc` connects to MySQL based on Environment Variables
+`mysqld > file.sql` dumps database to file.sql based on Environment Variables
+
+
 https://hub.docker.com/r/codekoalas/drupal8/
 
