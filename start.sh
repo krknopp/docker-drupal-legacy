@@ -15,7 +15,6 @@ sed -i "/drush/s/^\w*/$(shuf -i 1-60 -n 1)/" /root/crons.conf
 if [[ ! -n "$PRODUCTION" || $PRODUCTION != "true" ]] ; then
   sed -i "/git pull/s/[0-9]\+/5/" /root/crons.conf
 fi
-crontab /root/crons.conf
 
 # Clone repo to container
 git clone --depth=1 -b $GIT_BRANCH $GIT_REPO /var/www/site/
@@ -48,4 +47,5 @@ else
   grep -q -F 'Header set X-Robots-Tag "noindex, nofollow"' /etc/apache2/sites-enabled/000-default.conf || sed -i 's/.*\/VirtualHost.*/\tHeader set X-Robots-Tag \"noindex, nofollow\"\n\n&/' /etc/apache2/sites-enabled/000-default.conf
 fi
 
+crontab /root/crons.conf
 /usr/bin/supervisorctl restart apache2
