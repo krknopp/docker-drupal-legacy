@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod ssl rewrite headers proxy_fcgi remoteip
+RUN php5enmod mcrypt
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor /var/run/php /mnt/sites-files /etc/confd/conf.d /etc/confd/templates
 
