@@ -11,7 +11,7 @@ chmod +x /root/project_env.sh
 grep -q -F "$GIT_HOSTS" /etc/hosts  || echo $GIT_HOSTS >> /etc/hosts
 
 # Add cron jobs
-sed -i "/drush/s/^\w*/$(shuf -i 1-60 -n 1)/" /root/crons.conf
+sed -i "/drush/s/^\w*/$(shuf -i 1-59 -n 1)/" /root/crons.conf
 if [[ ! -n "$PRODUCTION" || $PRODUCTION != "true" ]] ; then
   sed -i "/git pull/s/[0-9]\+/5/" /root/crons.conf
 fi
@@ -39,6 +39,9 @@ fi
 # Create Drupal settings, if they don't exist as a symlink
 ln -s $APACHE_DOCROOT /root/apache_docroot
 /root/drupal-settings.sh
+
+# Load configs
+/root/load-configs.sh
 
 # Hide Drupal errors in production sites
 if [[ -n "$PRODUCTION" && $PRODUCTION = "true" ]] ; then
