@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 RUN apt-get update && apt-get install -y \
 	php-apc php-console-table php-pear php5-ldap php5-mongo \
 	php5-fpm php5-cli php5-common php5-curl php5-dev php5-gd php5-gmp php5-mcrypt php5-mysql \
-	libcurl4-openssl-dev libxml2-dev mime-support \
+	libcurl4-openssl-dev libxml2-dev mime-support unzip \
 	apache2 \
 	ca-certificates curl supervisor git cron mysql-client ssmtp \
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
@@ -33,7 +33,7 @@ COPY confd /etc/confd/
 COPY apache2.conf /etc/apache2/apache2.conf
 
 # Copy in drupal-specific files
-COPY wwwsite.conf drupal-settings.sh crons.conf start.sh mysqlimport.sh mysqlexport.sh /root/
+COPY wwwsite.conf drupal-settings.sh crons.conf start.sh load-configs.sh mysqlimport.sh mysqlexport.sh /root/
 COPY bash_aliases /root/.bash_aliases
 COPY drupal7-settings /root/drupal7-settings/
 
