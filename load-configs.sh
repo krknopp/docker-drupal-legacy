@@ -9,7 +9,7 @@ if [[ -n "$CONF_REPO" && ! -z $CONF_REPO ]] ; then
   mkdir -p /root/configs
   git clone -b $CONF_REPO_BRANCH $CONF_REPO /root/configs
   
-  grep -q -F 'CONF_REPO_BRANCH' /root/crons.conf || echo "*/15 * * * * . /root/project_env.sh; cd /root/configs && git pull origin $CONF_REPO_BRANCH" > /root/crons.conf
+  grep -q -F '/root/configs' /root/crons.conf || echo "*/15 * * * * . /root/project_env.sh; cd /root/configs && git pull origin $CONF_REPO_BRANCH" >> /root/crons.conf
   
   if [[ -e /root/configs/000-default.conf ]] ; then
     cp /root/configs/000-default.conf /etc/apache2/sites-enabled/000-default.conf
