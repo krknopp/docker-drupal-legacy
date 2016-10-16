@@ -52,5 +52,9 @@ else
   grep -q -F 'Header set X-Robots-Tag "noindex, nofollow"' /etc/apache2/sites-enabled/000-default.conf || sed -i 's/.*\/VirtualHost.*/\tHeader set X-Robots-Tag \"noindex, nofollow\"\n\n&/' /etc/apache2/sites-enabled/000-default.conf
 fi
 
+# set permissions on php log
+chmod 640 /var/log/php5-fpm.log
+chown www-data:www-data /var/log/php5-fpm.log
+
 crontab /root/crons.conf
 /usr/bin/supervisorctl restart apache2
