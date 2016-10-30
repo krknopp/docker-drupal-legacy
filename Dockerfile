@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
 	php5-fpm php5-cli php5-common php5-curl php5-dev php5-gd php5-gmp php5-mcrypt php5-mysql \
 	libcurl4-openssl-dev libxml2-dev mime-support unzip \
 	apache2 \
-	ca-certificates curl supervisor git cron mysql-client ssmtp \
+	ca-certificates curl supervisor git cron mysql-client ssmtp libxrender1 libxext6 \
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod ssl rewrite headers proxy_fcgi remoteip
@@ -24,6 +24,9 @@ RUN git clone https://github.com/drush-ops/drush.git /usr/local/src/drush && cd 
 # Install Confd
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
+
+# Install WKHTMLtoPDF
+COPY wkhtmltox /usr/local/bin/wkhtmltox
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY www.conf /etc/php5/fpm/pool.d/www.conf
