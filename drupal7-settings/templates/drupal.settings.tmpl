@@ -24,6 +24,9 @@ $drupal_hash_salt = '';
 $base_url = '{{getenv "DRUPAL_BASE_URL" }}';
 $_SERVER['HTTPS'] = '{{getenv "DRUPAL_HTTPS" }}';
 
+$conf['file_public_path'] = 'sites/default/files';
+#$conf['file_private_path'] = '../private';
+$conf['file_temporary_path'] = '/tmp';
 
 ini_set('session.gc_probability', 1);
 ini_set('session.gc_divisor', 100);
