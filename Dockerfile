@@ -13,6 +13,10 @@ RUN php5enmod mcrypt
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/supervisor /var/run/php /mnt/sites-files /etc/confd/conf.d /etc/confd/templates
 
+# Install Filebeat for Log Shipping
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.0.0-amd64.deb
+RUN dpkg -i filebeat-5.0.0-amd64.deb && rm filebeat-5.0.0-amd64.deb
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer \
 && ln -s /usr/local/bin/composer /usr/bin/composer
