@@ -35,7 +35,7 @@ COPY apache2.conf /etc/apache2/apache2.conf
 COPY registry_rebuild /root/.drush/registry_rebuild
 
 # Copy in drupal-specific files
-COPY wwwsite.conf drupal-settings.sh crons.conf start.sh load-configs.sh mysqlimport.sh mysqlexport.sh /root/
+COPY wwwsite.conf drupal-settings.sh crons.conf start.sh load-configs.sh mysqlimport.sh mysqlexport.sh xdebug-php.ini /root/
 COPY bash_aliases /root/.bash_aliases
 COPY drupal7-settings /root/drupal7-settings/
 
@@ -43,5 +43,7 @@ COPY drupal7-settings /root/drupal7-settings/
 VOLUME /var/www/site /etc/apache2/sites-enabled /mnt/sites-files
 
 EXPOSE 80
+
+WORKDIR /var/www/site
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
