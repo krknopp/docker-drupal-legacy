@@ -24,6 +24,8 @@ git clone --depth=1 -b $GIT_BRANCH $GIT_REPO /var/www/site/
 # Symlink files folder
 mkdir -p /mnt/sites-files/public
 mkdir -p /mnt/sites-files/private
+chown www-data:www-data -R /mnt/sites-files/public
+chown www-data:www-data -R /mnt/sites-files/private
 mkdir -p $APACHE_DOCROOT/sites/default
 cd $APACHE_DOCROOT/sites/default && ln -sf /mnt/sites-files/public files
 cd /var/www/site/ && ln -sf /mnt/sites-files/private private
