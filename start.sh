@@ -69,5 +69,18 @@ fi
 chmod 640 /var/log/php5-fpm.log
 chown www-data:www-data /var/log/php5-fpm.log
 
+# Set up New Relic if NR_INSTALL_KEY = "true"
+if [[ -n "$NR_INSTALL_KEY" ]] ; then
+  echo "Enabling APM metrics for ${VIRTUAL_HOST}"
+  newrelic-install install
+
+  # Update the application name
+  sed -i "s/newrelic.appname = \"\(.*\)\"/newrelic.appname = \"${VIRTUAL_HOST}_${HOSTNAME}\"/" /etc/php5/fpm/conf.d/newrelic.ini
+  sed -i "s/^newrelic.license = \"\(.*\)""/newrelic.license = \"${NR_INSTALL_KEY}\"/" /etc/php5/fpm/conf.d/newrelic.ini
+
+  /etc/init.d/newrelic-daemon stop
+  /usr/bin/supervisorctl restart php-fpm
+fi
+
 crontab /root/crons.conf
 /usr/bin/supervisorctl restart apache2
