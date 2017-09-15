@@ -24,6 +24,8 @@ git clone --depth=1 -b $GIT_BRANCH $GIT_REPO /var/www/site/
 # Symlink files folder
 mkdir -p /mnt/sites-files/public
 mkdir -p /mnt/sites-files/private
+chown www-data:www-data -R /mnt/sites-files/public
+chown www-data:www-data -R /mnt/sites-files/private
 mkdir -p $APACHE_DOCROOT/sites/default
 cd $APACHE_DOCROOT/sites/default && ln -sf /mnt/sites-files/public files
 cd /var/www/site/ && ln -sf /mnt/sites-files/private private
@@ -34,7 +36,7 @@ echo $(/usr/local/src/drush/drush --root=$APACHE_DOCROOT status | grep "Drupal v
 echo "[$(date +"%Y-%m-%d %H:%M:%S:%3N %Z")] NOTICE: Setting up XDebug based on state of LOCAL envvar"
 if [[ -n "$LOCAL" &&  $LOCAL = "true" ]] ; then
   /usr/bin/apt-get update && apt-get install -y \
-    php-xdebug \
+    php5-xdebug \
     --no-install-recommends && rm -r /var/lib/apt/lists/*
   cp /root/xdebug-php.ini /etc/php5/fpm/php.ini
   /usr/bin/supervisorctl restart php-fpm
